@@ -1,4 +1,4 @@
-# lvm-ssh-transfer
+# LVM copy via SSH
 This bash script copies a logical volume (LVM) from the local machine (*source*) to a remote server (*target*) via SSH, creating before a LVM in the remote machine with the same size as the source volume.
 
 ## Usage
