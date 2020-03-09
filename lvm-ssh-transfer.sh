@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#LVM copy via SSH
+#Source: https://github.com/daniol/lvm-ssh-transfer
+#License (GNU General Public License v3.0): https://github.com/daniol/lvm-ssh-transfer/blob/master/LICENSE
+
 #Initialize arguments
 group=""
 volume=""
