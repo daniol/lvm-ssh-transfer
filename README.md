@@ -11,9 +11,11 @@ The arguments for the script are:
 ## Examples
 
 `./lvm-ssh-transfer.sh --group vg0 --volume myvol --dest root@192.168.1.2`
+
 This transfers the logical volume under `/dev/vg0/myvol` to the remote server with IP address 192.168.1.2.
 
 `./lvm-ssh-transfer.sh --group vg0 --volume myvol --dest root@192.168.1.2 --verify`
+
 This does the same but adding integrity protection.
 
 ## Installation
