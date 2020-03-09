@@ -3,15 +3,18 @@ This bash script copies a logical volume (LVM) from the local machine (*source*)
 
 ## Usage
 The arguments for the script are:
-* group: Volume group
-* volume: Logical volume name
-* dest: IP address or hostname of the **target** server and, optionally, SSH user preceded by "@"
+* **group**: Volume group
+* **volume**: Logical volume name
+* **dest**: IP address or hostname of the **target** server and, optionally, SSH user preceded by "@"
+* verify (optional): verify the integrity of the transfered data
 
-## Example
+## Examples
 
 `./lvm-ssh-transfer.sh --group vg0 --volume myvol --dest root@192.168.1.2`
-
 This transfers the logical volume under `/dev/vg0/myvol` to the remote server with IP address 192.168.1.2.
+
+`./lvm-ssh-transfer.sh --group vg0 --volume myvol --dest root@192.168.1.2 --verify`
+This does the same but adding integrity protection.
 
 ## Installation
 Just download the file `lvm-ssh-transfer.sh` to the source server and execute it. Make sure the .sh file has execution rights.
@@ -34,12 +37,7 @@ This script must be executed from the source server, as specified.
 
 ### How to verify if the data was copied successfully?
 The script will output error messages and forwards the error code of the commands as exit code.
-If you want to get 100% sure if the data was successfully transfered, you can execute sha1sum on the source and target server and verify the integrity of the transfered data:
-
-```bash
-sha1sum /dev/vg0/myvol
-ssh 
-```
+If you want to get 100% sure if the data was successfully transfered, you can supply the option `--verify` to execute sha1sum on the source and target server and verify the integrity of the transfered data.
 
 ### I found a bug or I suggest an improvement
 
