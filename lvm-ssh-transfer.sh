@@ -23,17 +23,17 @@ done
 #Validate arguments
 if [ -z "$group" ]
 then
- echo "Argument error: Group volume is empty"
+ echo "Argument error: Group volume is empty" >&2
  exit 22
 fi
 if [ -z "$volume" ]
 then
- echo "Argument error: Volume name is empty"
+ echo "Argument error: Volume name is empty" >&2
  exit 22
 fi
 if [ -z "$dest" ]
 then
- echo "Argument error: destination (IP/Host) is empty"
+ echo "Argument error: destination (IP/Host) is empty" >&2
  exit 22
 fi
 
@@ -41,7 +41,7 @@ fi
 size=$(lvs $group/$volume --units b -o size --no-headings | xargs)
 if [ $? -ne 0 ]
 then
- echo "The logical volume /dev/$group/$volume does not exist"
+ echo "The logical volume /dev/$group/$volume does not exist" >&2
  exit $?
 fi
 
@@ -70,7 +70,7 @@ then
  sha_remote=$(ssh $dest "sha1sum -b /dev/$group/$volume" | awk '{print $1}')
  if [ "$sha_local" != "$sha_remote" ]
  then
-  echo "The data was corrupted ($sha_local / $sha_remote)!"
+  echo "The data was corrupted ($sha_local / $sha_remote)!" >&2
   exit 61
  else
   echo "The data was transfered fine ($sha_local)"
